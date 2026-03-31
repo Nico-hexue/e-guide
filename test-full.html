@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智译人文，多语黔行——"e-黔行"智能翻译</title>
+    <!-- Material Design Lite -->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-cyan.min.css">
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- Material Design Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0a3d62 0%, #1e5f8e 25%, #2d8b8b 50%, #38ada9 75%, #4ecdc4 100%);
+            background-attachment: fixed;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .mdl-card {
+            width: 100%;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .mdl-textfield {
+            width: 100%;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 200px;
+        }
+        .translation-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .translation-section {
+            flex: 1;
+            min-width: 300px;
+        }
+        .mdl-button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: #009688; text-align: center;">智译人文，多语黔行——"e-黔行"智能翻译</h1>
+        
+        <div class="mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title mdl-color--teal-600 mdl-color-text--white">
+                <h2 class="mdl-card__title-text">文本翻译</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <div class="translation-container">
+                    <div class="translation-section">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <textarea class="mdl-textfield__input" type="text" id="source-text"></textarea>
+                            <label class="mdl-textfield__label" for="source-text">输入旅游景区文学文本...</label>
+                        </div>
+                        <div class="language-selector">
+                            <label>源语言：</label>
+                            <select id="source-language">
+                                <option value="zh">中文</option>
+                                <option value="en">英语</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="translation-section">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <textarea class="mdl-textfield__input" type="text" id="target-text" readonly></textarea>
+                            <label class="mdl-textfield__label" for="target-text">翻译结果...</label>
+                        </div>
+                        <div class="language-selector">
+                            <label>目标语言：</label>
+                            <select id="target-language">
+                                <option value="en">英语</option>
+                                <option value="zh">中文</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--teal-500 mdl-color-text--white" id="translate-button">
+                        <i class="material-icons">translate</i> 翻译
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM加载完成');
+            
+            const translateButton = document.getElementById('translate-button');
+            const sourceText = document.getElementById('source-text');
+            const targetText = document.getElementById('target-text');
+            const sourceLanguage = document.getElementById('source-language');
+            const targetLanguage = document.getElementById('target-language');
+            
+            console.log('元素获取成功:', {
+                translateButton: !!translateButton,
+                sourceText: !!sourceText,
+                targetText: !!targetText,
+                sourceLanguage: !!sourceLanguage,
+                targetLanguage: !!targetLanguage
+            });
+            
+            translateButton.addEventListener('click', function() {
+                const text = sourceText.value.trim();
+                if (!text) {
+                    targetText.value = '请输入文本';
+                    return;
+                }
+                
+                targetText.value = '翻译中...';
+                
+                // 模拟翻译
+                setTimeout(() => {
+                    targetText.value = 'This is a test translation';
+                }, 1000);
+            });
+            
+            console.log('事件监听器添加成功');
+        });
+    </script>
+</body>
+</html>
